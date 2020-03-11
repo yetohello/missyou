@@ -94,7 +94,18 @@ function startHeartAnimation() {
 
 function timeElapse(){
 	var current = new Date();
-	var seconds = (Date.parse(current) - Date.parse("01 29, 2020")) / 1000;
+
+	var y = current.getFullYear();
+	var m = current.getMonth() + 1;
+	var d = current.getDate();
+	var h = current.getHours();
+	var f = current.getMinutes();
+	var s = current.getSeconds();
+
+	var arr = y +'/' + m + '/' + d + ' ' + h +':' + f +':' + s ;
+	var tday = y +'/' + m + '/' + d;
+
+	var seconds = (Date.parse(arr) - Date.parse("2020/1/29 17:50:50")) / 1000;
 	var days = Math.floor(seconds / (3600 * 24));
 	seconds = seconds % (3600 * 24);
 	var hours = Math.floor(seconds / 3600);
@@ -116,7 +127,7 @@ function timeElapse(){
 	var hen = document.getElementById("hen");
 	var rq = "*" + current.getFullYear() + "-" + "0" + (current.getMonth()+1) + "-" +current.getDate() + ".";
 	
-	hen.innerHTML = rq; 
+	hen.innerHTML = tday; 
 	
 }
 
