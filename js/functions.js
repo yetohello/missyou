@@ -1,44 +1,44 @@
-﻿
-var $window = $(window), gardenCtx, gardenCanvas, $garden, garden;
+﻿var $window = $(window),
+	gardenCtx, gardenCanvas, $garden, garden;
 var clientWidth = $(window).width();
 var clientHeight = $(window).height();
 
-$(function () {
-    // setup garden
+$(function() {
+	// setup garden
 	$loveHeart = $("#loveHeart");
 	var offsetX = $loveHeart.width() / 2;
 	var offsetY = $loveHeart.height() / 2 - 55;
-    $garden = $("#garden");
-    gardenCanvas = $garden[0];
+	$garden = $("#garden");
+	gardenCanvas = $garden[0];
 	gardenCanvas.width = $("#loveHeart").width();
-    gardenCanvas.height = $("#loveHeart").height()
-    gardenCtx = gardenCanvas.getContext("2d");
-    gardenCtx.globalCompositeOperation = "lighter";
-    garden = new Garden(gardenCtx, gardenCanvas);
-	
+	gardenCanvas.height = $("#loveHeart").height()
+	gardenCtx = gardenCanvas.getContext("2d");
+	gardenCtx.globalCompositeOperation = "lighter";
+	garden = new Garden(gardenCtx, gardenCanvas);
+
 	$("#content").css("width", $loveHeart.width() + $("#code").width());
 	$("#content").css("height", Math.max($loveHeart.height(), $("#code").height()));
 	$("#content").css("margin-top", Math.max(($window.height() - $("#content").height()) / 2, 10));
 	$("#content").css("margin-left", Math.max(($window.width() - $("#content").width()) / 2, 10));
 
-    // renderLoop
-    setInterval(function () {
-        garden.render();
-    }, Garden.options.growSpeed);
+	// renderLoop
+	setInterval(function() {
+		garden.render();
+	}, Garden.options.growSpeed);
 });
 
 $(window).resize(function() {
-    var newWidth = $(window).width();
-    var newHeight = $(window).height();
-    if (newWidth != clientWidth && newHeight != clientHeight) {
-        location.replace(location);
-    }
+	var newWidth = $(window).width();
+	var newHeight = $(window).height();
+	if (newWidth != clientWidth && newHeight != clientHeight) {
+		location.replace(location);
+	}
 });
 
 function getHeartPoint(angle) {
 	var t = angle / Math.PI;
 	var x = 19.5 * (16 * Math.pow(Math.sin(t), 3));
-	var y = - 20 * (13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
+	var y = -20 * (13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
 	return new Array(offsetX + x, offsetY + y);
 }
 
@@ -46,7 +46,7 @@ function startHeartAnimation() {
 	var interval = 50;
 	var angle = 10;
 	var heart = new Array();
-	var animationTimer = setInterval(function () {
+	var animationTimer = setInterval(function() {
 		var bloom = getHeartPoint(angle);
 		var draw = true;
 		for (var i = 0; i < heart.length; i++) {
@@ -73,7 +73,9 @@ function startHeartAnimation() {
 (function($) {
 	$.fn.typewriter = function() {
 		this.each(function() {
-			var $ele = $(this), str = $ele.html(), progress = 0;
+			var $ele = $(this),
+				str = $ele.html(),
+				progress = 0;
 			$ele.html('');
 			var timer = setInterval(function() {
 				var current = str.substr(progress, 1);
@@ -92,7 +94,7 @@ function startHeartAnimation() {
 	};
 })(jQuery);
 
-function timeElapse(){
+function timeElapse() {
 	var current = new Date();
 
 	var y = current.getFullYear();
@@ -102,8 +104,8 @@ function timeElapse(){
 	var f = current.getMinutes();
 	var s = current.getSeconds();
 
-	var arr = y +'/' + m + '/' + d + ' ' + h +':' + f +':' + s ;
-	var tday = y +'/' + m + '/' + d;
+	var arr = y + '/' + m + '/' + d + ' ' + h + ':' + f + ':' + s;
+	var tday = y + '/' + m + '/' + d;
 
 	var seconds = (Date.parse(arr) - Date.parse("2020/1/29 17:20:00")) / 1000;
 	var days = Math.floor(seconds / (3600 * 24));
@@ -121,14 +123,13 @@ function timeElapse(){
 	if (seconds < 10) {
 		seconds = "0" + seconds;
 	}
-	var result = "<span class=\"digit\">" + days + "</span> days <span class=\"digit\">" + hours + "</span> hours <span class=\"digit\">" + minutes + "</span> minutes <span class=\"digit\">" + seconds + "</span> seconds"; 
+	var result = "<span class=\"digit\">" + days + "</span> days <span class=\"digit\">" + hours + "</span> hours <span class=\"digit\">" + minutes + "</span> minutes <span class=\"digit\">" + seconds + "</span> seconds";
 	$("#elapseClock").html(result);
-	
+
 	var hen = document.getElementById("hen");
-	var rq = "*" + current.getFullYear() + "-" + "0" + (current.getMonth()+1) + "-" +current.getDate() + ".";
-	
-	hen.innerHTML = tday; 
-	
+	var rq = "*" + current.getFullYear() + "-" + "0" + (current.getMonth() + 1) + "-" + current.getDate() + ".";
+
+	hen.innerHTML = tday;
 }
 
 function showMessages() {
