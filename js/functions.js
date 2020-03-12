@@ -105,7 +105,7 @@ function timeElapse(){
 	var arr = y +'/' + m + '/' + d + ' ' + h +':' + f +':' + s ;
 	var tday = y +'/' + m + '/' + d;
 
-	var seconds = (Date.parse(arr) - Date.parse("2020/1/29 17:50:50")) / 1000;
+	var seconds = (Date.parse(arr) - Date.parse("2020/1/29 17:20:00")) / 1000;
 	var days = Math.floor(seconds / (3600 * 24));
 	seconds = seconds % (3600 * 24);
 	var hours = Math.floor(seconds / 3600);
